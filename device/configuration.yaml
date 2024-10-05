@@ -1,0 +1,13 @@
+service:
+  identifier: "Sungrow-1"
+  model: "sungrow"
+  host: "192.168.10.10"
+  port: 502
+  order: "CDAB"
+  slave: 1
+
+  message_bus:
+    host: "127.0.0.1"
+    port: 6379
+    username: "inovat"
+    password: "Inovat1023!"

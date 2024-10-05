@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "device"
+version = "0.1.0"
+description = ""
+authors = ["İlteriş Yücel <ilteris.yucel@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+inovat-commonlib = { path = "../../inovat-commonlib" }
+kink = "^0.8.0"
+pyyaml = "^6.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
