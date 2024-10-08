@@ -5,7 +5,7 @@ service:
   port: 502
   order: "CDAB"
   slave: 1
-
+  interval: 5
   message_bus:
     host: "127.0.0.1"
     port: 6379

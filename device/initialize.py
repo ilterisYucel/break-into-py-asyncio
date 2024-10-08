@@ -3,12 +3,11 @@ import os
 from typing import Dict, TypeVar
 
 import yaml
-from inovat_commonlib.loop_manager.loop_manager import UVLoopManager
-from inovat_commonlib.modbus_client.modbus_client import (
+from inovat_commonlib.modules.modbus_client import (
     ModbusClient,
     ModbusClientConfig,
 )
-from inovat_commonlib.redis_client.redis_client import RedisClient
+from inovat_commonlib.modules.redis_client import RedisClient
 from kink import di
 
 from .schemas import SDeviceServiceConfig
@@ -37,6 +36,7 @@ _VALID_ENV_KEY = [
     "DEVICE_SERVICE_PORT",
     "DEVICE_SERVICE_ORDER",
     "DEVICE_SERVICE_SLAVE",
+    "DEVICE_SERVICE_INTERVAL",
     "DEVICE_SERVICE_MESSAGE_BUS_HOST",
     "DEVICE_SERVICE_MESSAGE_BUST_PORT" "DEVICE_SERVICE_MESSAGE_BUS_USERNAME",
     "DEVICE_SERVICE_MESSAGE_BUS_PASSWORD",
@@ -85,14 +85,18 @@ def merge_config(
 async def bootstrap():
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
+    di["logger"] = logger
+
     config_schema: SDeviceServiceConfig = create_config_schema("DEVICE_SERVICE")
     di["service_config"] = config_schema
 
     redis_client = RedisClient(config=config_schema.message_bus)
     di["redis_client"] = redis_client
 
-    modbus_client_config = ModbusClientConfig(config_schema.host, config_schema.port)
+    modbus_client_config = ModbusClientConfig(
+        host=config_schema.host, port=config_schema.port
+    )
     modbus_client = ModbusClient(modbus_client_config, logger=logger)
     di["modbus_client"] = modbus_client
 
-    di["loop_manager"] = UVLoopManager(logger=logger)
+    # di["loop_manager"] = UVLoopManager(logger=logger)
