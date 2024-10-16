@@ -38,7 +38,8 @@ _VALID_ENV_KEY = [
     "DEVICE_SERVICE_SLAVE",
     "DEVICE_SERVICE_INTERVAL",
     "DEVICE_SERVICE_MESSAGE_BUS_HOST",
-    "DEVICE_SERVICE_MESSAGE_BUST_PORT" "DEVICE_SERVICE_MESSAGE_BUS_USERNAME",
+    "DEVICE_SERVICE_MESSAGE_BUST_PORT",
+    "DEVICE_SERVICE_MESSAGE_BUS_USERNAME",
     "DEVICE_SERVICE_MESSAGE_BUS_PASSWORD",
 ]
 
@@ -98,5 +99,3 @@ async def bootstrap():
     )
     modbus_client = ModbusClient(modbus_client_config, logger=logger)
     di["modbus_client"] = modbus_client
-
-    # di["loop_manager"] = UVLoopManager(logger=logger)

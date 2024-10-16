@@ -13,8 +13,6 @@ from kink import inject
 from device.initialize import bootstrap
 from device.schemas import SDeviceServiceConfig
 
-# loop_manager = UVLoopManager()
-
 
 @inject
 async def process(
@@ -40,7 +38,6 @@ async def process(
     await device.process()
 
 
-@inject
 async def main():
     await bootstrap()
     await process()

@@ -7,10 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-# inovat-commonlib = { path = "../../inovat-commonlib", develop = true }
+inovat-commonlib = { path = "../../inovat-commonlib", develop = true }
 kink = "^0.8.0"
 pyyaml = "^6.0.2"
-inovat-commonlib = { git = "git@github.com:inovatess/inovat-commonlib.git" }
+# inovat-commonlib = { git = "git@github.com:inovatess/inovat-commonlib.git" }
 
 
 [build-system]
