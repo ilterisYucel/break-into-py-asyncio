@@ -5,7 +5,7 @@ from typing import Dict, TypeVar
 import yaml
 from inovat_commonlib.modules.modbus_client import (
     ModbusClient,
-    ModbusClientConfig,
+    SModbusClientConfig,
 )
 from inovat_commonlib.modules.redis_client import RedisClient
 from kink import di
@@ -34,8 +34,8 @@ _VALID_ENV_KEY = [
     "DEVICE_SERVICE_MODEL",
     "DEVICE_SERVICE_HOST",
     "DEVICE_SERVICE_PORT",
-    "DEVICE_SERVICE_ORDER",
-    "DEVICE_SERVICE_SLAVE",
+    "DEVICE_SERVICE_MODBUS_ORDER",
+    "DEVICE_SERVICE_MODBUS_SLAVE",
     "DEVICE_SERVICE_INTERVAL",
     "DEVICE_SERVICE_MESSAGE_BUS_HOST",
     "DEVICE_SERVICE_MESSAGE_BUST_PORT",
@@ -94,7 +94,7 @@ async def bootstrap():
     redis_client = RedisClient(config=config_schema.message_bus)
     di["redis_client"] = redis_client
 
-    modbus_client_config = ModbusClientConfig(
+    modbus_client_config = SModbusClientConfig(
         host=config_schema.host, port=config_schema.port
     )
     modbus_client = ModbusClient(modbus_client_config, logger=logger)

@@ -3,9 +3,13 @@ service:
   model: "sungrow"
   host: "192.168.10.10"
   port: 502
-  order: "CDAB"
-  slave: 1
-  interval: 5
+  modbus_order: "CDAB"
+  modbus_slave: 1
+  interval: 0.1
+  ems_service_read_topic: "/devices/read"
+  ems_service_command_topic: "/devices/command"
+  data_service_request_topic: "/data/request"
+  data_service_response_topic: "/data/response"
   message_bus:
     host: "127.0.0.1"
     port: 6379
